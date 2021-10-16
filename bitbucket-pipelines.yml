@@ -1,0 +1,24 @@
+image:
+  name: atlassian/default-image:2
+
+pipelines:
+  custom:
+    test:
+      - step:
+          name: test package
+          image: python:3.5.7
+          script:
+            - pip install -r requirements.txt --extra-index-url https://pypi.it-thematic.ru
+            - pip install -r requirements-test.txt
+            - pytest
+  branches:
+    master:
+      - step:
+          name: build and publish package
+          script:
+          - pipe: atlassian/pypi-publish:0.2.6
+            variables:
+              PYPI_USERNAME: $PYPI_USER
+              PYPI_PASSWORD: $PYPI_PASS
+              REPOSITORY: 'https://pypi.it-thematic.ru'
+              DISTRIBUTIONS: 'sdist bdist_wheel'
