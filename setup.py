@@ -14,7 +14,6 @@ setuptools.setup(
     url='https://github.com/rrdocru/rrd-utils.git',
     author='IT-Thematic',
     author_email='inbox@it-thematic.ru',
-    license='MIT',
     classifiers=[
         'Development Status :: 5 - Production/Stable'
         'Operating System :: OS Independent',
